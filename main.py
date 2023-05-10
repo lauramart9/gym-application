@@ -154,7 +154,7 @@ def add_subscriptions(subscriptions):
 # Writing subscriptions data to subscriptions.txt file
     with open("subscriptions.txt", "w") as file:
         for subscription in subscriptions:
-            file.write(f"{subscription.customer.name},{subscription.trainer.name},{subscription.exercise_plan.equipment.name},{subscription.start_date},{subscription.end_date}\n")
+            file.write(f"{subscription.customer},{subscription.trainer},{subscription.exercise_plan},{subscription.start_date},{subscription.end_date}\n")
 
 def del_subscriptions(name):
     with open("subscriptions.txt", "r") as file:
@@ -191,7 +191,7 @@ def main():
         print("16. Delete subscription")
 
  # Prompting user to enter their choice and using `int()` function converting input to
-# integer and assign it to the variable `choice`
+# integer and assigning it to the variable `choice`
 
         choice = int(input("Enter your choice: "))
 
@@ -262,7 +262,7 @@ def main():
                     break
             exercise_plan = None
             for e in exercise_plans:
-                if e.trainer == trainer and e.equipment.name == equipment_name:
+                if e.trainer == trainer and e.equipment == equipment_name:
                     exercise_plan = e
                     break
             subscription = Subscription(customer, trainer, exercise_plan, start_date, end_date)
@@ -305,12 +305,12 @@ def main():
         elif choice == 13:
             trainer_name = input("Enter name of trainer to delete: ")
             del_trainer(trainer_name)
-#handling unexpected input by printing error message when deleting equipment
+#Handling unexpected input by printing error message when deleting equipment
         elif choice == 14:
             equipment_name = input("Enter name of equipment to delete: ")
             for equipment in equipments:
                 if equipment.name != equipment_name:
-                    # raise ValueError(f"Invalid equipment name: {equipment_name}")
+# raise ValueError(f"Invalid equipment name: {equipment_name}")
                     print(f"Invalid equipment name: {equipment_name}, Try again")
             else:
                 del_equipments(equipment_name)
