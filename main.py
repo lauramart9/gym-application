@@ -85,17 +85,20 @@ def read_data():
             subscriptions.append(subscription)
 
     return customers, trainers, equipments, exercise_plans, subscriptions
- # Writing customers  data to customers.txt file
+# Writing customers  data to customers.txt file
 def add_customer(customers):
     with open("customers.txt", "w") as file:
         for customer in customers:
             file.write(f"{customer.name},{customer.age},{customer.gender},{customer.email},{customer.password}\n")\
 
 def del_customer(name):
+# opening th file "customers.txt" in read mode and assigning its contents to the variable `lines`
     with open("customers.txt", "r") as file:
         lines = file.readlines()
+# overwriting the file if it already exists
     with open("customers.txt", "w") as file:
         for line in lines:
+# deleting lines that start with the `name` argument.
             if not line.startswith(name):
                 file.write(line)
     print(f"{name} has been deleted from customers")
